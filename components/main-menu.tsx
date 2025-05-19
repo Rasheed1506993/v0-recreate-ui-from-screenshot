@@ -1,56 +1,103 @@
-"use client"
-
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { cn } from "@/lib/utils"
-
-export function MainMenu() {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
-
-  const menuItems = [
-    { title: "عن بلدي", href: "#" },
-    { title: "مركز المعرفة", href: "#" },
-    { title: "الخدمات", href: "#" },
-    { title: "الاستعلامات", href: "#" },
-    { title: "المنصات", href: "#" },
-    { title: "تواصل معنا", href: "#" },
-  ]
-
+import React from "react";
+import {
+  Navbar,
+  Collapse,
+  Typography,
+  IconButton,
+} from "@material-tailwind/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+ 
+function NavList() {
   return (
-    <div>
-      {/* زر القائمة */}
-      <button onClick={toggleMenu} className="text-white p-2">
-        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-      </button>
-
-      {/* القائمة المنسدلة */}
-      <div
-        className={cn(
-          "fixed left-0 right-0 bg-[#006e63] text-white overflow-hidden transition-all duration-300 ease-in-out z-40",
-          isOpen ? "max-h-[400px] border-b border-[#006e63]" : "max-h-0",
-        )}
+    <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
       >
-        <div className="container mx-auto px-4">
-          <ul className="py-2">
-            {menuItems.map((item, index) => (
-              <li key={index} className="py-2 border-b border-[#005a52] last:border-0">
-                <Link href={item.href} className="block text-right pr-4 py-2 hover:bg-[#005a52] rounded-md">
-                  {item.title} ←
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+          Pages
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+          Account
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+          Blocks
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+          Docs
+        </a>
+      </Typography>
+    </ul>
+  );
+}
+ 
+export function NavbarSimple() {
+  const [openNav, setOpenNav] = React.useState(false);
+ 
+  const handleWindowResize = () =>
+    window.innerWidth >= 960 && setOpenNav(false);
+ 
+  React.useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+ 
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+ 
+  return (
+    <Navbar className="mx-auto max-w-screen-xl px-6 py-3">
+      <div className="flex items-center justify-between text-blue-gray-900">
+        <Typography
+          as="a"
+          href="#"
+          variant="h6"
+          className="mr-4 cursor-pointer py-1.5"
+        >
+          Material Tailwind
+        </Typography>
+        <div className="hidden lg:block">
+          <NavList />
         </div>
+        <IconButton
+          variant="text"
+          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          ripple={false}
+          onClick={() => setOpenNav(!openNav)}
+        >
+          {openNav ? (
+            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+          ) : (
+            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+          )}
+        </IconButton>
       </div>
-
-      {/* طبقة شفافة تظهر خلف القائمة عند فتحها */}
-      {isOpen && (
-         )}
-    </div>
-  )
+      <Collapse open={openNav}>
+        <NavList />
+      </Collapse>
+    </Navbar>
+  );
 }
