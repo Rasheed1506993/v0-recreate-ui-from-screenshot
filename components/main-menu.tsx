@@ -1,91 +1,58 @@
 import React from "react";
-import {
-  Navbar,
-  Collapse,
-  Typography,
-  IconButton,
-} from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
- 
-function NavList() {
+
+function NavList({ isMobile = false }) {
   return (
-    <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+    <ul className={`${isMobile ? "flex flex-col gap-4 p-4" : "hidden lg:flex lg:items-center lg:gap-6"}`}>
+      <li className="p-1">
+        <a href="#" className="font-medium text-gray-700 hover:text-blue-500 transition-colors flex items-center">
           Pages
         </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+      </li>
+      <li className="p-1">
+        <a href="#" className="font-medium text-gray-700 hover:text-blue-500 transition-colors flex items-center">
           Account
         </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+      </li>
+      <li className="p-1">
+        <a href="#" className="font-medium text-gray-700 hover:text-blue-500 transition-colors flex items-center">
           Blocks
         </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+      </li>
+      <li className="p-1">
+        <a href="#" className="font-medium text-gray-700 hover:text-blue-500 transition-colors flex items-center">
           Docs
         </a>
-      </Typography>
+      </li>
     </ul>
   );
 }
- 
+
 export function NavbarSimple() {
   const [openNav, setOpenNav] = React.useState(false);
- 
-  const handleWindowResize = () =>
-    window.innerWidth >= 960 && setOpenNav(false);
- 
+
+  const handleWindowResize = () => {
+    if (window.innerWidth >= 960) {
+      setOpenNav(false);
+    }
+  };
+
   React.useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
- 
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
+    return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
- 
+
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-6 py-3">
-      <div className="flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as="a"
-          href="#"
-          variant="h6"
-          className="mr-4 cursor-pointer py-1.5"
-        >
-          Material Tailwind
-        </Typography>
-        <div className="hidden lg:block">
-          <NavList />
-        </div>
-        <IconButton
-          variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-          ripple={false}
+    <nav className="bg-white shadow-sm mx-auto max-w-screen-xl px-6 py-3">
+      <div className="flex items-center justify-between text-gray-900">
+        <a href="#" className="text-xl font-semibold cursor-pointer py-1.5 mr-4">
+          My App
+        </a>
+        
+        <NavList />
+        
+        <button
+          className="lg:hidden ml-auto h-6 w-6 text-gray-700 hover:text-gray-900 focus:outline-none"
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (
@@ -93,11 +60,13 @@ export function NavbarSimple() {
           ) : (
             <Bars3Icon className="h-6 w-6" strokeWidth={2} />
           )}
-        </IconButton>
+        </button>
       </div>
-      <Collapse open={openNav}>
-        <NavList />
-      </Collapse>
-    </Navbar>
+      
+      {/* Mobile menu */}
+      <div className={`lg:hidden ${openNav ? "block" : "hidden"}`}>
+        <NavList isMobile />
+      </div>
+    </nav>
   );
 }
