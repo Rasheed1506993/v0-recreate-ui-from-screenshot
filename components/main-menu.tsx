@@ -32,7 +32,7 @@ export function MainMenu() {
       <div
         className={cn(
           "fixed left-0 right-0 bg-[#006e63] text-white overflow-hidden transition-all duration-300 ease-in-out z-40",
-          isOpen ? "max-h-[400px] border-b border-[#006e63]" : "max-h-0",
+          isOpen ? "max-h-[400px] border-b border-[#005a52]" : "max-h-0",
         )}
       >
         <div className="container mx-auto px-4">
