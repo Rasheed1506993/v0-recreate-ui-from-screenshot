@@ -147,13 +147,13 @@ export default function PublicVerifyPage({
     <header className="bg-[#006e63] text-white py-3 px-4 flex justify-between items-center sticky top-0 z-50">
       <NavbarSimple />
     </header>
-  </div>
 
-      {/* محتوى الصفحة الرئيسي - تصميم مطابق للصورة الجديدة */}
-      <div className="max-w-md mx-auto bg-white shadow-sm p-6 my-4 rounded-md">
-        {/* عنوان الشهادة */}
-        <h1 className="text-xl font-bold text-center mb-4">الشهادة الصحية الموحدة</h1>
+    {/* محتوى الصفحة الرئيسي - تصميم مطابق للصورة الجديدة */}
+    <div className="max-w-md mx-auto bg-white shadow-sm p-6 my-4 rounded-md">
+      {/* عنوان الشهادة */}
+      <h1 className="text-xl font-bold text-center mb-4">الشهادة الصحية الموحدة</h1>
 
+      
         {/* صورة الشهادة المصغرة */}
         <div className="flex justify-center mb-6">
           <div className="w-24 h-32 bg-gray-100 border border-gray-200 flex items-center justify-center">
