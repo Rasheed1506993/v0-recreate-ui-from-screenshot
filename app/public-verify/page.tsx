@@ -141,15 +141,13 @@ export default function PublicVerifyPage({
     )
   }
 
-  return (
-    <div className="min-h-screen bg-[#f0f4f5]" dir="rtl">
-      {/* Header - تصميم مطابق للصورة مع الشعار الجديد */}
-      <header className="bg-[#006e63] text-white py-3 px-4 flex justify-between items-center sticky top-0 z-50">
-        <div className="flex items-center">
-          <Image src="/images/balady-logo.png" alt="شعار بلدي" width={150} height={50} className="object-contain" />
-        </div>
-        <MainMenu />
-      </header>
+    return (
+  <div className="min-h-screen bg-[#f0f4f5]" dir="rtl">
+    {/* Header - تصميم مطابق للصورة مع الشعار الجديد */}
+    <header className="bg-[#006e63] text-white py-3 px-4 flex justify-between items-center sticky top-0 z-50">
+      <NavbarSimple />
+    </header>
+  </div>
 
       {/* محتوى الصفحة الرئيسي - تصميم مطابق للصورة الجديدة */}
       <div className="max-w-md mx-auto bg-white shadow-sm p-6 my-4 rounded-md">
