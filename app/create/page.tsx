@@ -160,8 +160,8 @@ export default function CreateCertificate() {
 
   // تعديل رابط التحقق ليتضمن جميع معلومات الشهادة
   const verificationUrl = isClient
-    ? `${window.location.origin}/public-verify?id=${certificateId}&name=${encodeURIComponent(formData.name)}&id_number=${encodeURIComponent(formData.id_number)}&certificate_number=${encodeURIComponent(formData.certificate_number)}&nationality=${encodeURIComponent(formData.nationality)}&profession=${encodeURIComponent(formData.profession)}&issue_date=${encodeURIComponent(formData.issue_date)}&expiry_date=${encodeURIComponent(formData.expiry_date)}&program_type=${encodeURIComponent(formData.program_type)}&program_end_date=${encodeURIComponent(formData.program_end_date)}&facility_name=${encodeURIComponent(formData.facility_name)}&facility_number=${encodeURIComponent(formData.facility_number)}&license_number=${encodeURIComponent(formData.license_number)}&gender=${encodeURIComponent(formData.gender)}&municipality=${encodeURIComponent(formData.municipality)}`
-    : ""
+  ? `${window.location.origin}/verify/${certificateId}`
+  : ""
 
   return (
     <div className="max-w-4xl mx-auto p-4 bg-gray-50" dir="rtl">
@@ -484,3 +484,5 @@ export default function CreateCertificate() {
     </div>
   )
 }
+
+
